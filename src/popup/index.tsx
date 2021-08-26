@@ -7,7 +7,7 @@ require('./index.scss');
 function App() {
     return (
         <div className="main">
-            <p>Hello</p>
+            <p id="container">Hello</p>
             <ButtonComponent />
         </div>
     );

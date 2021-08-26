@@ -1,4 +1,34 @@
+import { doc } from 'prettier';
+import { finder } from '@medv/finder';
 console.log('this is content script');
+// document.body.style.backgroundColor = '#000';
+
+let ele = document.getElementsByClassName('MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters');
+let ele1 = document.getElementsByTagName('div');
+console.log(ele, ele1);
+var lastem: any;
+document.onmouseover = function (e) {
+    // console.log(e.target);
+    if (lastem) {
+        lastem.style.border = 'none';
+    }
+    var target: any = e.target;
+    target.style.border = '1px solid #000';
+    lastem = target;
+
+    // target[0].click();
+    // console.log(selector, 'selector');
+};
+
+document.onclick = function (e) {
+    console.log(e.target, 'click');
+    let target: any = e.target;
+    var selector = finder(target, {
+        seedMinLength: 10,
+        optimizedMinLength: 6,
+    });
+    console.log(selector);
+};
 
 interface MessageWithResponse {
     name: string;
@@ -21,5 +51,5 @@ function listenAndRespond() {
     });
 }
 
-// listenToMessages();
+listenToMessages();
 listenAndRespond();
