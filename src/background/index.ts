@@ -1,3 +1,5 @@
+import { sendMessageToContentScriptWithResponse } from '../popup/utils/chrome.message';
+
 console.log('this is background script');
 
 interface Message {
@@ -22,3 +24,20 @@ function listenAndRespondBackgroundMessaged(): void {
 }
 
 listenAndRespondBackgroundMessaged();
+
+var temp: any = [];
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    switch (message.type) {
+        case 'selector':
+            temp = [...temp, message.selector];
+            break;
+        case 'getSelector':
+            sendResponse(temp);
+            break;
+        default:
+            console.error('Unrecognised message: ', message);
+    }
+    chrome.runtime.sendMessage(temp);
+});
+
+console.log(temp);

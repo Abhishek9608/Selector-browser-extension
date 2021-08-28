@@ -20,18 +20,18 @@ document.onmouseover = function (e) {
     // console.log(selector, 'selector');
 };
 
+var selector: any = [];
 console.log('Got message from CS');
 document.onclick = function (e) {
     console.log(e.target, 'click');
     let target: any = e.target;
-    var selector = finder(target, {
+    let newselector = finder(target, {
         seedMinLength: 10,
         optimizedMinLength: 6,
     });
-    console.log(selector);
-    chrome.runtime.onMessage.addListener((message: MessageWithResponse, _sender, sendResponse) => {
-        sendResponse(selector);
-    });
+    // console.log([...selector, newselector]);?
+    //  ?
+    chrome.runtime.sendMessage({ type: 'selector', selector: newselector });
 };
 
 interface MessageWithResponse {
