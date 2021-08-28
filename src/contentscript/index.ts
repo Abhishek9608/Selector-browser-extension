@@ -20,6 +20,7 @@ document.onmouseover = function (e) {
     // console.log(selector, 'selector');
 };
 
+console.log('Got message from CS');
 document.onclick = function (e) {
     console.log(e.target, 'click');
     let target: any = e.target;
@@ -28,6 +29,9 @@ document.onclick = function (e) {
         optimizedMinLength: 6,
     });
     console.log(selector);
+    chrome.runtime.onMessage.addListener((message: MessageWithResponse, _sender, sendResponse) => {
+        sendResponse(selector);
+    });
 };
 
 interface MessageWithResponse {

@@ -25,3 +25,14 @@ export function sendChromeMessage<T, R>(message: T): Promise<R> {
         });
     });
 }
+
+export function sendChromeData() {
+    console.log('called');
+    return chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+        alert('I am popup!');
+        console.log(message);
+        sendResponse({
+            data: 'I am fine, thank you. How is life in the background?',
+        });
+    });
+}

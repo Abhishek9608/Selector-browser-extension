@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+    sendChromeData,
     sendChromeMessage,
     sendMessageToContentScript,
     sendMessageToContentScriptWithResponse,
@@ -15,6 +16,10 @@ function ButtonComponent(): JSX.Element {
     const [response, setResponse] = useState('');
 
     const [list, setList] = useState<List[]>([]);
+
+    // useEffect(() => {
+    sendChromeData();
+    // }, []);
 
     function sendMessage(e: any) {
         console.log(e.target);
