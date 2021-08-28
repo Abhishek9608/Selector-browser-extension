@@ -9,12 +9,24 @@
     border-color: #176aa7;
     border-style: solid;
     background: #2493e5;
-    z-index: 1000;
-    /* opacity: 0.95; */
     color: white;
     padding: 0px 8px;
     font-size: 18px;
     border-radius: 3px 3px 0px 0px;
-    user-select: none;
-    cursor: default;
+    display: flex;
+    justify-content: space-between;
+}
+#wholeDelete {
+}
+
+#footer {
+    height: 48px;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    position: fixed;
+    border-width: 1px 0px 0px 0px;
+    border-color: #b9b9b9;
+    border-style: solid;
+    background: #fafafa;
 }

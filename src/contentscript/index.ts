@@ -1,5 +1,6 @@
 import { doc } from 'prettier';
 import { finder } from '@medv/finder';
+import getXPath from 'get-xpath';
 console.log('this is content script');
 // document.body.style.backgroundColor = '#000';
 
@@ -31,7 +32,15 @@ document.onclick = function (e) {
     });
     // console.log([...selector, newselector]);?
     //  ?
-    chrome.runtime.sendMessage({ type: 'selector', selector: newselector });
+    let options = {
+        selectorTypes: ['Tag'],
+    };
+
+    const newTag = target.tagName;
+
+    const newXPath = getXPath(target);
+
+    chrome.runtime.sendMessage({ type: 'selector', data: { selector: newselector, tag: newTag, XPath: newXPath } });
 };
 
 interface MessageWithResponse {
